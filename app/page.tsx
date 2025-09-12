@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button'
 import Companioncard from '@/components/Companioncard'
 import Companionslist from '@/components/Companionslist'
 import CTA from '@/components/CTA'
+import { recentSessions } from '@/constants'
 
 const Page = () => {
   return (
@@ -16,7 +17,7 @@ const Page = () => {
           topic="Web Development"
           subject="Computer Science"
           duration={60}
-         color="#a1a0a0ff"
+         color="#ffeb85ff"
         />
            <Companioncard
           id="456"
@@ -24,7 +25,7 @@ const Page = () => {
           topic="Web Development"
           subject="Computer Science"
           duration={240}
-          color="#a1a0a0ff"
+          color="#7ee4f4ff"
         />
           <Companioncard
           id="789"
@@ -32,12 +33,16 @@ const Page = () => {
           topic="Web Development"
           subject="Computer Science"
           duration={700}
-         color="#a1a0a0ff"
+         color="#d99cffff"
         />
       </section>
 
       <section className='home-section'>
-        <Companionslist/>
+        <Companionslist
+          title="Your Recent Sessions"
+          companions={recentSessions}
+          classNames="w-2/3 max-lg:w-full"
+        />
         <CTA/>
       </section>
     </main>
