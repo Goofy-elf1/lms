@@ -10,6 +10,7 @@ import {
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { getSubjectColor } from "@/lib/utils";
 interface CompanionsListProps {
   title: string;
   companions? : Companion[];
@@ -35,7 +36,10 @@ const Companionslist = ( { title, companions, classNames}: CompanionsListProps )
         <TableCell>
           <Link href={'/companions/${id}'}>
             <div className="flex items-center gap-2">
-              <div>
+              <div className="size-[72px] flex items-center
+              justify-center rounded-lg max-md:hidden" 
+              style={{backgroundColor: getSubjectColor(subject) }}>
+              
                 <Image src={`/icons/${subject}.svg`} alt={subject} width={35} height={35} />
               </div>
             </div>
