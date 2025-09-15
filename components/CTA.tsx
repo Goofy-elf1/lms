@@ -1,8 +1,8 @@
 const CTA = () => {
   return (
-    <div>
+    <section className="cta-section">
       CTA
-    </div>
+    </section>
   )
 }
 
