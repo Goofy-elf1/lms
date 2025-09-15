@@ -32,6 +32,7 @@ const formSchema = z.object({
   name: z.string().min(1, { message: "Companion is required" }),
   Subject: z.string().min(1, { message: "Subject is required" }),
   topic: z.string().min(1, { message: "topic is required" }),
+    voice: z.string().min(1, { message: 'Voice is required.'}),
   style: z.string().min(1, { message: "style is required" }),
   duration: z.number().min(1, { message: "duration is required" }),
 })
@@ -114,14 +115,60 @@ const onSubmit = (values: z.infer<typeof formSchema>) => {
         </FormItem>
       )}
     />
-     <FormField
+   
+    <FormField
       control={form.control}
-      name="name"
+      name="voice"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Companion </FormLabel>
+          <FormLabel>Voice</FormLabel>
           <FormControl>
-            <Input placeholder="Enter the Companion name" {...field} className="input"/>
+           <Select 
+           onValueChange={field.onChange}
+           value={field.value}
+           defaultValue={field.value}>
+            <SelectTrigger className="input">
+                <SelectValue placeholder="Select The Voice" />
+                    </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="male">
+                            Male
+                          </SelectItem>
+                          <SelectItem value="female">
+                            Female
+                          </SelectItem>
+                        </SelectContent>
+            </Select>
+
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  <FormField
+      control={form.control}
+      name="style"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Style</FormLabel>
+          <FormControl>
+           <Select 
+           onValueChange={field.onChange}
+           value={field.value}
+           defaultValue={field.value}>
+            <SelectTrigger className="input">
+                <SelectValue placeholder="Select The Style" />
+                    </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Formal">
+                            Formal
+                          </SelectItem>
+                          <SelectItem value="Casual">
+                            Casual
+                          </SelectItem>
+                        </SelectContent>
+            </Select>
+
           </FormControl>
           <FormMessage />
         </FormItem>
@@ -129,31 +176,21 @@ const onSubmit = (values: z.infer<typeof formSchema>) => {
     />
      <FormField
       control={form.control}
-      name="name"
+      name="duration"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Companion Name</FormLabel>
+          <FormLabel>Estimated session duration in minutes</FormLabel>
           <FormControl>
-            <Input placeholder="Enter the Companion name" {...field} className="input"/>
+            <Input type='number'
+            placeholder="15" {...field} className="input"/>
           </FormControl>
           <FormMessage />
         </FormItem>
       )}
     />
-     <FormField
-      control={form.control}
-      name="name"
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>Companion Name</FormLabel>
-          <FormControl>
-            <Input placeholder="Enter the Companion name" {...field} className="input"/>
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-      )}
-    />
-    <Button type="submit">Submit</Button>
+    <Button type="submit" className="w-full cursor-pointer">
+        Build your Companion 🎉
+        </Button>
   </form>
 </Form>
   )
