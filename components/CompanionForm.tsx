@@ -15,6 +15,17 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import {subjects} from "@/constants";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Textarea } from "./ui/textarea"
+
 
 
 const formSchema = z.object({
@@ -45,9 +56,106 @@ const onSubmit = (values: z.infer<typeof formSchema>) => {
 
 
   return (
-    <div>
-      CompanionForm
-    </div>
+    <Form {...form}>
+  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+    <FormField
+      control={form.control}
+      name="name"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Companion Name</FormLabel>
+          <FormControl>
+            <Input placeholder="Enter the Companion name" {...field} className="input"/>
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+     <FormField
+      control={form.control}
+      name="Subject"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Subject</FormLabel>
+          <FormControl>
+           <Select 
+           onValueChange={field.onChange}
+           value={field.value}
+           defaultValue={field.value}>
+            <SelectTrigger className="input capatazlize">
+                <SelectValue placeholder="Select The Subject" />
+                    </SelectTrigger>
+                        <SelectContent>
+                            {subjects.map((subject) => (
+                            <SelectItem value="subject"
+                            key={subject}
+                            className="capitalize">
+                                {subject}
+                            </SelectItem>
+                        ))}
+                        </SelectContent>
+            </Select>
+
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+     <FormField
+      control={form.control}
+      name="topic"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>What should the Companion help with</FormLabel>
+          <FormControl>
+            <Textarea placeholder="Ex. Derivatives & Integrals" {...field} className="input"/>
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+     <FormField
+      control={form.control}
+      name="name"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Companion </FormLabel>
+          <FormControl>
+            <Input placeholder="Enter the Companion name" {...field} className="input"/>
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+     <FormField
+      control={form.control}
+      name="name"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Companion Name</FormLabel>
+          <FormControl>
+            <Input placeholder="Enter the Companion name" {...field} className="input"/>
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+     <FormField
+      control={form.control}
+      name="name"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Companion Name</FormLabel>
+          <FormControl>
+            <Input placeholder="Enter the Companion name" {...field} className="input"/>
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+    <Button type="submit">Submit</Button>
+  </form>
+</Form>
   )
 }
 
