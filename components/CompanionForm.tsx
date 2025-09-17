@@ -88,7 +88,7 @@ const onSubmit = (values: z.infer<typeof formSchema>) => {
                     </SelectTrigger>
                         <SelectContent>
                             {subjects.map((subject) => (
-                            <SelectItem value="subject"
+                            <SelectItem value={subject}
                             key={subject}
                             className="capitalize">
                                 {subject}
