@@ -25,12 +25,15 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Textarea } from "./ui/textarea"
+import { create } from "domain"
+import { createCompanion } from "@/lib/actions/companion.actions"
+import { redirect } from "next/navigation"
 
 
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Companion is required" }),
-  Subject: z.string().min(1, { message: "Subject is required" }),
+  subject: z.string().min(1, { message: "Subject is required" }),
   topic: z.string().min(1, { message: "topic is required" }),
     voice: z.string().min(1, { message: 'Voice is required.'}),
   style: z.string().min(1, { message: "style is required" }),
@@ -44,15 +47,22 @@ const form = useForm<z.infer<typeof formSchema>>({
   resolver: zodResolver(formSchema),
   defaultValues: {
         name:'',
-        Subject:'',
+        subject:'',
         topic:'',
         style:'',
         duration: 15,
   },
 })
 
-const onSubmit = (values: z.infer<typeof formSchema>) => {
-  console.log(values)
+const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const companion = await createCompanion(values);
+
+  if(companion) {
+    redirect(`/companions/${companion.id}`);
+  } else {
+    console.log('Failed to create companion');
+    redirect('/');
+  }
 }
 
 
@@ -74,7 +84,7 @@ const onSubmit = (values: z.infer<typeof formSchema>) => {
     />
      <FormField
       control={form.control}
-      name="Subject"
+      name="subject"
       render={({ field }) => (
         <FormItem>
           <FormLabel>Subject</FormLabel>
