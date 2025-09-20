@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import Companioncard from '@/components/CompanionCard'
+import CompanionCard from "@/components/CompanionCard"
 import Companionslist from '@/components/Companionslist'
 import CTA from '@/components/CTA'
 import { recentSessions } from '@/constants'
@@ -11,7 +11,7 @@ const Page = () => {
         Popular Companions
       </h1>
       <section className='home-section'>
-        <Companioncard
+        <CompanionCard
           id="123"
           name="HTML 5"
           topic="Web Development"
@@ -19,7 +19,7 @@ const Page = () => {
           duration={60}
          color="#ffeb85ff"
         />
-           <Companioncard
+           <CompanionCard
           id="456"
           name="CSS 3"
           topic="Web Development"
@@ -27,7 +27,7 @@ const Page = () => {
           duration={240}
           color="#7ee4f4ff"
         />
-          <Companioncard
+          <CompanionCard
           id="789"
           name="JavaScript"
           topic="Web Development"
