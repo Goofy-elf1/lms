@@ -2,7 +2,7 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import React, { use, useEffect, useState } from 'react'
 import Image from 'next/image'
-import { formUrlQuery } from '@jsmastery/utils'
+import { formUrlQuery, removeKeysFromUrlQuery } from '@jsmastery/utils'
 
 const SearchInput = () => {
     const pathname = usePathname();
@@ -20,6 +20,15 @@ const SearchInput = () => {
             value: searchQuery,
          });
     router.push(newUrl, { scroll: false });
+        } else {
+            if( pathname === '/companions') {
+                const newUrl = removeKeysFromUrlQuery({
+                params: searchParams.toString(),
+                 keysToRemove: ["topic"],
+        });
+
+    router.push(newUrl, { scroll: false });
+            }
         }
     }, [searchQuery, router, searchParams, pathname])
 
