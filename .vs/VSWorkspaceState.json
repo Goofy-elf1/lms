@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\.next\\build\\chunks"
+    "\\app",
+    "\\app\\companions",
+    "\\app\\companions\\[id]"
   ],
-  "SelectedNode": "\\.next",
   "PreviewInSolutionExplorer": false
 }

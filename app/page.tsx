@@ -15,7 +15,7 @@ const Page = () => {
           id="123"
           name="HTML 5"
           topic="Web Development"
-          subject="Computer Science"
+          subject="coding"
           duration={60}
          color="#ffeb85ff"
         />
@@ -23,7 +23,7 @@ const Page = () => {
           id="456"
           name="CSS 3"
           topic="Web Development"
-          subject="Computer Science"
+          subject="coding"
           duration={240}
           color="#7ee4f4ff"
         />
@@ -31,7 +31,7 @@ const Page = () => {
           id="789"
           name="JavaScript"
           topic="Web Development"
-          subject="Computer Science"
+          subject="coding"
           duration={700}
          color="#d99cffff"
         />
