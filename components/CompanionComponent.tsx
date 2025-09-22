@@ -21,6 +21,8 @@ const CompanionComponent =
     const [callStatus, setCallStatus] = useState<CallStatus>(CallStatus.INACTIVE);
     const [ isSpeaking, setIsSpeaking] = useState(false);
 
+    const [ isMuted, setIsMuted] = useState(false);
+
     const lottieRef = useRef<LottieRefCurrentProps>(null);
 
     useEffect(() => {
@@ -60,6 +62,12 @@ const CompanionComponent =
 
     }, []);
 
+    const toggleMicrophone = () => {
+      const isMuted = vapi.isMuted();
+      vapi.setMuted(!isMuted);
+      setIsMuted(!isMuted);
+    }
+
   return (
     <section className='flex flex-col h-[70vh]'>
        <section className='flex gap-8 max-sm:flex-col'>
@@ -83,9 +91,29 @@ const CompanionComponent =
                         />
                      </div>
                 </div>
-                      
-
+                      <p className='font-bold text-2xl'>
+                        {name}
+                      </p>
             </div>
+
+                      <div className='user-section'>
+                         <div className='user-avatar'>
+                            <Image src={userImage} alt={userName} width={130} height={130} 
+                            className='rounded-lg'/>
+                            <p className='font-bold text-2xl'>
+                            {userName}
+                            </p>
+                         </div>
+                         <button className='btn-mic' onClick={toggleMicrophone}>
+                            <Image 
+                            src={isMuted ? '/icons/mic-off.svg' : '/icons/mic-on.svg'} 
+                            alt='mic' width={36} height={36}/>
+                            <p className='max-sm:hidden'>
+                            {isMuted ? 'Turn on microphone' : 'Turn off microphone'}
+                            </p>
+                         </button>
+                      </div>
+
        </section>
     </section>
   )
