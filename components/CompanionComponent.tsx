@@ -1,6 +1,6 @@
 'use client' 
 
-import { getSubjectColor } from '@/lib/utils'
+import { configureAssistant, getSubjectColor } from '@/lib/utils'
 import { vapi } from '@/lib/vapi.sdk';
 import React, { useEffect, useRef, useState } from 'react'
 import { cn } from "@/lib/utils";
@@ -8,6 +8,7 @@ import { ca } from 'zod/locales';
 import Image from 'next/image';
 import Lottie, { LottieRef, LottieRefCurrentProps } from 'lottie-react';
 import soundwaves from '@/constants/soundwaves.json';
+import { Variable } from 'lucide-react';
 enum CallStatus {
     INACTIVE = 'INACTIVE',
     CONNECTING = 'CONNECTING',
@@ -69,11 +70,20 @@ const CompanionComponent =
     }
 
     const handleCall = async () => {
+      setCallStatus(CallStatus.CONNECTING)
 
+      const assistantOverrides = {
+      variableValues: {subject, topic, style},
+      clientMessages: ['transcript'],
+      serverMessages: [],
     }
+    // @ts-expect-error
+    vapi.start(configureAssistant(voice, style), assistantOverrides)
+  }
 
     const handleDisconnect = async () => {
-
+      setCallStatus(CallStatus.FINISHED)
+      vapi.stop();
     }
 
   return (

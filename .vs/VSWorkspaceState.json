@@ -4,7 +4,8 @@
     "\\app",
     "\\app\\companions",
     "\\app\\companions\\[id]",
-    "\\components"
+    "\\components",
+    "\\lib"
   ],
   "SelectedNode": "\\components\\CompanionComponent.tsx",
   "PreviewInSolutionExplorer": false
