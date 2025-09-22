@@ -73,7 +73,7 @@ const CompanionComponent =
     }
 
     const handleDisconnect = async () => {
-      
+
     }
 
   return (
@@ -132,6 +132,13 @@ const CompanionComponent =
                       </div>
 
        </section>
+              <section className="transcript">
+                              <div className='transcript-message no-scrollbar'>
+                                Messages will appear here
+                              </div>
+                              <div className='transcript-fade'/>
+              </section>
+
     </section>
   )
 }
