@@ -24,6 +24,8 @@ const CompanionComponent =
 
     const [ isMuted, setIsMuted] = useState(false);
 
+    const [messages, setMessages ] = useState<SavedMessage[]>([]);
+
     const lottieRef = useRef<LottieRefCurrentProps>(null);
 
     useEffect(() => {
@@ -38,8 +40,12 @@ const CompanionComponent =
 
         const onCallEnd = () => setCallStatus(CallStatus.FINISHED);
 
-        const onMessage = () => {}
-
+        const onMessage = (message: Message) => {
+          if(message.type === 'transcript' && message.transcriptType === 'final') {
+            const newMessage = { role: message.role, content: message.transcript };
+            setMessages((prev) => [newMessage, ...prev])
+        }
+      } 
         const onSpeechStart = () => setIsSpeaking(true);
         const onSpeechEnd = () => setIsSpeaking(false);
 
@@ -122,7 +128,8 @@ const CompanionComponent =
                             {userName}
                             </p>
                          </div>
-                         <button className='btn-mic' onClick={toggleMicrophone}>
+                         <button className='btn-mic' onClick={toggleMicrophone} 
+                         disabled={callStatus !== CallStatus.ACTIVE}>
                             <Image 
                             src={isMuted ? '/icons/mic-off.svg' : '/icons/mic-on.svg'} 
                             alt='mic' width={36} height={36}/>
@@ -144,7 +151,20 @@ const CompanionComponent =
        </section>
               <section className="transcript">
                               <div className='transcript-message no-scrollbar'>
-                                Messages will appear here
+                              {messages.map((message, index) => {
+                                if(message.role === 'assistant') {
+                                  return (
+                                    <p key={index} className='max-sm:text-sm'>
+                                      {name.split('')[0].replace('/[.,]/g','')}
+                                      : {index}
+                                    </p>
+                                  )
+                                } else {
+                                return <p key={index} className='text-primary max-sm:test-sm'>
+                                    {userName} : {index}
+                                </p>
+                              }
+                              })} 
                               </div>
                               <div className='transcript-fade'/>
               </section>
