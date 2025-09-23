@@ -9,6 +9,7 @@ import Image from 'next/image';
 import Lottie, { LottieRef, LottieRefCurrentProps } from 'lottie-react';
 import soundwaves from '@/constants/soundwaves.json';
 import { Variable } from 'lucide-react';
+import { addToSessionHistory } from '@/lib/actions/companion.actions';
 enum CallStatus {
     INACTIVE = 'INACTIVE',
     CONNECTING = 'CONNECTING',
@@ -38,7 +39,10 @@ const CompanionComponent =
     useEffect(() => {
         const onCallStart = () => setCallStatus(CallStatus.ACTIVE);
 
-        const onCallEnd = () => setCallStatus(CallStatus.FINISHED);
+        const onCallEnd = () => {
+           setCallStatus(CallStatus.FINISHED);
+            addToSessionHistory(companionId)
+        }
 
         const onMessage = (message: Message) => {
           if(message.type === 'transcript' && message.transcriptType === 'final') {
