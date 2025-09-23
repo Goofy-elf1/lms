@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import CompanionCard from "@/components/CompanionCard"
-import Companionslist from '@/components/Companionslist'
+import CompanionsList from "@/components/CompanionsList"
 import CTA from '@/components/CTA'
 import { recentSessions } from '@/constants'
 import { getAllCompanions, getRecentSessions } from '@/lib/actions/companion.actions'
@@ -26,7 +26,7 @@ const Page =  async () => {
       </section>
 
       <section className='home-section'>
-        <Companionslist
+        <CompanionsList
           title="Your Recent Sessions"
           companions={recentSessionsCompanions}
           classNames="w-2/3 max-lg:w-full"

@@ -4,9 +4,10 @@
     "\\app",
     "\\app\\companions",
     "\\app\\companions\\[id]",
+    "\\app\\my-journey",
     "\\components",
     "\\lib"
   ],
-  "SelectedNode": "\\app\\companions\\[id]\\page.tsx",
+  "SelectedNode": "\\app\\my-journey\\page.tsx",
   "PreviewInSolutionExplorer": false
 }
