@@ -1,52 +1,105 @@
+# LMS SaaS Platform
 
-# SaaS App - LMS with Next.js, Supabase & Payments
+A full-stack Learning Management System built with Next.js and Supabase, featuring AI-powered voice tutoring, subscription billing, and real-time session management.
+
+---
 
 ## Table of Contents
-- [Introduction](#introduction)
+
+- [Overview](#overview)
 - [Tech Stack](#tech-stack)
 - [Features](#features)
-- [Quick Start](#quick-start)
-- [Assets](#assets)
-- [More](#more)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
 
-## Introduction
-Create an LMS SaaS app from scratch featuring user authentication, subscriptions, and payments using Next.js, Supabase, and Stripe! You'll build and deploy a real-time teaching platform with Vapi, integrate an AI vocal agent, and deliver seamless, interactive learning sessions.
+---
+
+## Overview
+
+This project is a production-ready LMS SaaS application where users can create AI tutors, conduct voice-based tutoring sessions, and manage subscriptions. The platform integrates Vapi for real-time voice AI, Clerk for auth and billing, and Supabase as the primary database and storage backend.
+
+---
 
 ## Tech Stack
-- **Clerk**: A unified platform for authentication, user management, and billing. It offers embeddable UI components, flexible APIs, and admin dashboards for secure user management. Clerk also simplifies subscription management, allowing you to define plans, create pricing pages, and control access based on subscription tiers—all in one solution.
-- **Next.js**: A powerful React framework that enables the development of fast, scalable web applications with features like server-side rendering, static site generation, and API routes for building full-stack applications.
-- **Sentry**: An error tracking and performance monitoring tool that helps developers fix bugs faster by providing real-time alerts, stack traces, and performance insights.
-- **shadcn/ui**: A customizable component library built on Radix UI and Tailwind CSS. It offers a modern, accessible design system with pre-built components that are easy to theme and extend, making it ideal for building polished UIs with minimal effort.
-- **Supabase**: An open-source backend-as-a-service platform that provides instant APIs, real-time subscriptions, authentication, storage, and a PostgreSQL database, enabling developers to build scalable and secure applications with ease.
-- **Tailwind CSS**: A utility-first CSS framework that allows developers to design custom user interfaces by applying low-level utility classes directly in HTML, streamlining the design process.
-- **TypeScript**: A superset of JavaScript that adds static typing, providing better tooling, code quality, and error detection for developers, making it ideal for building large-scale applications.
-- **Vapi**: A developer-centric voice AI platform that enables the creation of conversational voice agents with low-latency voice interactions, speech-to-text, and text-to-speech capabilities. It supports multilingual conversations, customizable voices, and seamless integration with various AI models and tools.
-- **Zod**: A TypeScript-first schema validation library that provides a simple and expressive way to define and validate data structures. Zod ensures data integrity by catching errors early during development.
+
+| Technology | Role |
+|---|---|
+| **Next.js** | Full-stack React framework — handles routing, SSR, and API routes |
+| **TypeScript** | Static typing across the entire codebase |
+| **Supabase** | PostgreSQL database, real-time subscriptions, and file storage |
+| **Clerk** | Authentication, user management, and subscription/billing management |
+| **Vapi** | Voice AI SDK for real-time conversational tutoring agents |
+| **Tailwind CSS** | Utility-first CSS framework for layout and styling |
+| **shadcn/ui** | Accessible, composable UI components built on Radix UI + Tailwind |
+| **Zod** | Runtime schema validation and type inference for form and API data |
+| **Sentry** | Error tracking and performance monitoring |
+
+---
 
 ## Features
-- **AI Voice Agents**: Take tutoring sessions with voiced AIs specializing in the topics you want to get better at.
-- **Authentication**: Secure user sign-up and sign-in with Clerk; Google authentication and many more.
-- **Billing & Subscriptions**: Easily manage plans, upgrades, and payment details.
-- **Code Reusability**: Leverage reusable components and a modular codebase for efficient development.
-- **Create a Tutor**: Create your own AI tutors, choosing a subject, topic, and style of conversation.
-- **Cross-Device Compatibility**: Fully responsive design that works seamlessly across all devices.
-- **Database Integration**: Uses Supabase for real-time data handling and storage needs.
-- **Modern UI/UX**: Clean, responsive design built with Tailwind CSS and shadcn/ui for a sleek user experience.
-- **Scalable Tech Stack**: Built with Next.js for a fast, production-ready web application that scales seamlessly.
-- **Search Functionality**: Find tutors quickly with robust filters and search bar.
 
-And many more, including code architecture and reusability.
+- **AI Voice Tutors** — Create custom tutors with configurable subjects, topics, and conversation styles; sessions are powered by Vapi's low-latency voice AI.
+- **Authentication** — Sign-up and sign-in via Clerk with support for Google OAuth and other providers.
+- **Subscription Management** — Plan selection, upgrades, and billing are handled through Clerk's billing integration.
+- **Tutor Builder** — Users define their own AI tutors by specifying subject, focus area, and preferred interaction style.
+- **Search & Discovery** — Filter and search tutors by subject or topic.
+- **Real-time Database** — Supabase powers live data sync for session state and tutor records.
+- **Responsive UI** — Fully functional across desktop and mobile viewports.
+- **Modular Codebase** — Components are scoped and reusable; logic is separated from presentation throughout.
 
-## Quick Start
-Follow these steps to set up the project locally:
-1. Clone the repository.
-2. Install dependencies with `npm install`.
-3. Set up environment variables for Clerk, Supabase, Stripe, Vapi, etc.
-4. Run the development server with `npm run dev`.
+---
 
-## Assets
-- Icons and images are available in the `/public` directory.
-- Additional assets can be sourced from free resources like Unsplash or custom-generated.
+## Getting Started
 
-## More
-For further customization or advanced features, refer to the documentation of the individual tech stack components.
+### Prerequisites
+
+- Node.js 18+
+- Accounts for: Clerk, Supabase, Vapi
+
+### Setup
+
+```bash
+# 1. Clone the repository
+git clone <repo-url>
+cd <project-directory>
+
+# 2. Install dependencies
+npm install
+
+# 3. Configure environment variables
+cp .env.example .env.local
+# Fill in keys for Clerk, Supabase, and Vapi
+
+# 4. Start the development server
+npm run dev
+```
+
+### Required Environment Variables
+
+```env
+# Clerk
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+# Vapi
+NEXT_PUBLIC_VAPI_WEB_TOKEN=
+```
+
+---
+
+## Project Structure
+
+```
+/
+├── app/              # Next.js App Router pages and layouts
+├── components/       # Reusable UI components
+├── lib/              # Utility functions, Supabase client, Vapi config
+├── public/           # Static assets (icons, images)
+└── types/            # Shared TypeScript types and Zod schemas
+```
+
+Static assets are served from `/public`. External images can be sourced from [Unsplash](https://unsplash.com) or generated as needed.
